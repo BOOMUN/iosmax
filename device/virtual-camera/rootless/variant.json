@@ -1,0 +1,9 @@
+{
+  "jailbreak_type": "rootless",
+  "display_name": "Rootless (Dopamine)",
+  "package_id": "com.iosmax.virtualcamera",
+  "package_scheme": "rootless",
+  "architecture": "iphoneos-arm64",
+  "runtime_root": "/var/jb",
+  "artifact_directory": "artifacts/virtual-camera/rootless"
+}

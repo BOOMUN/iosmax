@@ -1,0 +1,15 @@
+{
+  "name": "iosmax-frida-scripts",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "esbuild whatsapp_camera_agent.js --bundle --format=iife --platform=neutral --target=es2022 --outfile=whatsapp_camera.js",
+    "build:system-control": "esbuild system_control_agent.js --bundle --format=iife --platform=neutral --target=es2022 --outfile=system_control.js"
+  },
+  "dependencies": {
+    "frida-objc-bridge": "^8.0.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

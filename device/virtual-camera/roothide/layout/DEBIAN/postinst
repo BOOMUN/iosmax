@@ -1,0 +1,15 @@
+#!/bin/sh
+
+JBROOT=$(/usr/bin/jbroot 2>/dev/null || true)
+SHARED="$JBROOT/var/mobile/Library/Caches/com.iosmax.virtualcamera"
+
+mkdir -p "$SHARED"
+chown mobile:mobile "$SHARED"
+chmod 755 "$SHARED"
+if [ ! -f "$SHARED/daemon-control.txt" ]; then
+    printf 'enabled=0\ntarget_pid=0\n' > "$SHARED/daemon-control.txt"
+fi
+chown mobile:mobile "$SHARED/daemon-control.txt"
+chmod 644 "$SHARED/daemon-control.txt"
+
+exit 0

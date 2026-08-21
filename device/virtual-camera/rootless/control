@@ -1,0 +1,10 @@
+Package: com.iosmax.virtualcamera
+Name: IOSMax Virtual Camera (Rootless)
+Version: 0.3.2-rootless1
+Architecture: iphoneos-arm64
+Description: Dopamine rootless arm64 mediaserverd camera-source replacement for IOSMax.
+Maintainer: IOSMax
+Author: IOSMax
+Section: Tweaks
+Depends: ellekit, firmware (>= 15.0)
+X-IOSMax-Jailbreak-Type: rootless

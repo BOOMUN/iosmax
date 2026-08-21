@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ ! -x /usr/bin/jbroot ]; then
+    echo "RootHide jbroot helper was not found" >&2
+    exit 1
+fi
+
+JBROOT=$(/usr/bin/jbroot 2>/dev/null || true)
+case "$JBROOT" in
+    /var/containers/Bundle/Application/.jbroot-*) ;;
+    *)
+        echo "Refusing RootHide package: invalid jbroot ($JBROOT)" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

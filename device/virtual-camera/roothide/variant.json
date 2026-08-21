@@ -1,0 +1,10 @@
+{
+  "jailbreak_type": "roothide",
+  "display_name": "RootHide",
+  "package_id": "com.iosmax.virtualcamera",
+  "package_scheme": "roothide",
+  "architecture": "iphoneos-arm64e",
+  "runtime_root_command": "/usr/bin/jbroot",
+  "requires_pac00": true,
+  "artifact_directory": "artifacts/virtual-camera/roothide"
+}

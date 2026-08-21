@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -x /usr/bin/jbroot ]; then
+    DETECTED=$(/usr/bin/jbroot 2>/dev/null || true)
+    case "$DETECTED" in
+        /var/containers/Bundle/Application/.jbroot-*)
+            echo "Refusing rootless package on RootHide ($DETECTED)" >&2
+            exit 1
+            ;;
+    esac
+fi
+
+if [ ! -d /var/jb ]; then
+    echo "Rootless bootstrap /var/jb was not found" >&2
+    exit 1
+fi
+
+exit 0

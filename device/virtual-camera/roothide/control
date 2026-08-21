@@ -1,0 +1,10 @@
+Package: com.iosmax.virtualcamera
+Name: IOSMax Virtual Camera (RootHide)
+Version: 0.3.0-roothide1
+Architecture: iphoneos-arm64e
+Description: RootHide arm64e/PAC00 mediaserverd camera-source replacement for IOSMax.
+Maintainer: IOSMax
+Author: IOSMax
+Section: Tweaks
+Depends: ellekit, firmware (>= 15.0)
+X-IOSMax-Jailbreak-Type: roothide

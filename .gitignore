@@ -1,0 +1,27 @@
+.idea/
+.venv/
+.env
+data/
+artifacts/
+frontend/node_modules/
+backend/app/frida_scripts/node_modules/
+frontend/dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.tmp/
+*.tsbuildinfo
+*.log
+*.db
+*.db-*
+.theos/
+*.o
+*.dSYM/
+
+# TypeScript/Vue compiler output kept beside source files
+frontend/src/**/*.vue.js
+frontend/src/api.js
+frontend/src/main.js
+frontend/src/types.js
+frontend/vite.config.js
+frontend/vite.config.d.ts
