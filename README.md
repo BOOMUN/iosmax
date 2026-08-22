@@ -65,6 +65,18 @@ npm.cmd --prefix frontend install
 
 浏览器访问 <http://127.0.0.1:8010>。首次登录后应立即修改管理员密码。
 
+### Windows 桌面快速启动
+
+完成初始化后运行一次：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install-web-shortcut.ps1
+```
+
+脚本会在当前用户桌面创建 `iOSMax Web` 快捷方式。双击时，如果控制台已经运行，
+会直接打开网页；如果尚未运行，会在后台启动服务、等待健康检查通过后再打开
+<http://127.0.0.1:8010>。重复双击不会重复启动监听 `8010` 的服务。
+
 ## 添加设备流程
 
 1. 点击“添加设备”，填写连接地址、SSH 账号和端口。
