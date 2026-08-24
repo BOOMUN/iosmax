@@ -8,7 +8,9 @@ $ErrorActionPreference = "Stop"
 
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $backendRoot = Join-Path $projectRoot "backend"
-$python = Join-Path $projectRoot ".venv\Scripts\pythonw.exe"
+$python = Join-Path $projectRoot ".venv\Scripts\python.exe"
+$usbTunnelLauncher = Join-Path $projectRoot "start-usb-tunnels.ps1"
+$usbTunnelConfig = Join-Path $projectRoot "data\usb_tunnels.json"
 $healthUrl = "http://127.0.0.1:$Port/api/health"
 $webUrl = "http://127.0.0.1:$Port/"
 $launcherMutex = [System.Threading.Mutex]::new($false, "Local\iOSMaxWebLauncher-$Port")
@@ -61,6 +63,13 @@ try {
         throw "Another iOSMax startup task did not finish in time."
     }
 
+    if (Test-Path -LiteralPath $usbTunnelConfig -PathType Leaf) {
+        if (-not (Test-Path -LiteralPath $usbTunnelLauncher -PathType Leaf)) {
+            throw "The USB tunnel launcher was not found: $usbTunnelLauncher"
+        }
+        & $usbTunnelLauncher -ConfigPath $usbTunnelConfig | Out-Null
+    }
+
     if (-not (Test-WebHealth)) {
         $listener = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
         if ($listener) {
@@ -70,24 +79,21 @@ try {
         }
         else {
             if (-not (Test-Path -LiteralPath $python -PathType Leaf)) {
-                $python = Join-Path $projectRoot ".venv\Scripts\python.exe"
-            }
-            if (-not (Test-Path -LiteralPath $python -PathType Leaf)) {
                 throw "The Python virtual environment was not found."
             }
 
             $arguments = @(
-                "-m", "uvicorn", "app.main:app",
+                "-B", "-m", "uvicorn", "app.main:app",
                 "--host", "127.0.0.1",
                 "--port", "$Port"
             )
             $server = Start-Process -FilePath $python -ArgumentList $arguments -WorkingDirectory $backendRoot -WindowStyle Hidden -PassThru
 
-            if (-not (Wait-WebHealth 60)) {
+            if (-not (Wait-WebHealth 180)) {
                 if ($server.HasExited) {
                     throw "The iOSMax server exited with code $($server.ExitCode)."
                 }
-                throw "The iOSMax server did not pass its health check within 60 seconds."
+                throw "The iOSMax server did not pass its health check within 180 seconds."
             }
         }
     }
