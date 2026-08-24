@@ -1,0 +1,26 @@
+{
+  "kit_version": "2026.08.24-1",
+  "platform": "Windows",
+  "jailbreak_type": "rootless",
+  "components": [
+    {
+      "name": "Dopamine",
+      "version": "3.0.7",
+      "filename": "Dopamine-3.0.7.ipa",
+      "bytes": 55409953,
+      "sha256": "a07dc0459f14cc0c5712532f2a1b2251b7227e5aacc5f80ad24bfb2eae1ec50c",
+      "source_url": "https://github.com/opa334/Dopamine/releases/download/3.0.7/Dopamine.ipa",
+      "verification": "Matches the GitHub Release asset size and published SHA-256 digest."
+    },
+    {
+      "name": "Sideloadly",
+      "version": "0.60.0",
+      "filename": "SideloadlySetup64-0.60.0.exe",
+      "bytes": 131003599,
+      "sha256": "625ad1e8240ee4765d0d181a33acab686b5b92f842e625c0f17e812a7893fdf4",
+      "source_url": "https://sideloadly.io/SideloadlySetup64.exe",
+      "authenticode": "NotSigned",
+      "verification": "The official v0.60.0 page and current download report the same byte length; the publisher does not expose a public checksum."
+    }
+  ]
+}

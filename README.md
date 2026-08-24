@@ -61,6 +61,21 @@ TrollVNC 和 Frida 继续只监听手机回环地址，不得直接暴露到公�
 无线验收必须断开 USB，并至少确认 SSH、VNC 画面、Frida、唤醒和返回桌面均可通过
 Tailnet 工作。手机切换到其他 Wi-Fi 或蜂窝网络后还应能自动重连。
 
+## Dopamine 与 Sideloadly 离线包
+
+`packaging/jailbreak-kit/` 固定了已验证的 Dopamine 3.0.7 IPA 与 Windows 版
+Sideloadly 0.60.0 的文件名、字节长度和 SHA-256。运行下列命令会从本机
+`Downloads` 读取两个官方安装文件，校验后在被 Git 忽略的 `artifacts/` 下生成
+离线 ZIP、中文安装说明和 ZIP 校验文件：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\packaging\jailbreak-kit\build-jailbreak-kit.ps1
+```
+
+该安装包只用于 Dopamine rootless，不适用于 RootHide。第三方二进制不会进入 Git；
+公开发布 Sideloadly 安装器前必须先确认其发布者允许再分发。Dopamine 包含实际越狱
+利用组件，Defender 可能按 `Exploit:MacOS/*` 报警；部署前必须校验固定哈希并确认设备授权。
+
 iPhone X 当前端口彼此独立：
 
 | 连接 | SSH | TrollVNC | Frida |
