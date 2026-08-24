@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from .api.auth import router as auth_router
 from .api.camera import router as camera_router
 from .api.devices import router as devices_router
+from .config import settings
 from .database import SessionLocal, create_tables
 from .models import Device
 from .security import COOKIE_NAME, seed_admin, user_from_session
@@ -56,7 +57,14 @@ async def lifespan(_: FastAPI):
         wireless_tunnel_manager.stop()
 
 
-app = FastAPI(title="iOSMax Control", version="0.1.0", lifespan=lifespan)
+app = FastAPI(
+    title="iOSMax Control",
+    version="0.1.0",
+    lifespan=lifespan,
+    docs_url="/docs" if settings.docs_enabled else None,
+    redoc_url="/redoc" if settings.docs_enabled else None,
+    openapi_url="/openapi.json" if settings.docs_enabled else None,
+)
 app.include_router(auth_router)
 app.include_router(devices_router)
 app.include_router(camera_router)

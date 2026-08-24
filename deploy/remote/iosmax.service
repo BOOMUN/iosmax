@@ -1,0 +1,36 @@
+[Unit]
+Description=iOSMax control service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/iosmax-deploy/web/current/backend
+EnvironmentFile=/home/ubuntu/iosmax-deploy/web/shared/iosmax.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/ubuntu/iosmax-deploy/web/shared/venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 18010 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=full
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+ReadWritePaths=/home/ubuntu/iosmax-deploy/web/shared/data
+TasksMax=256
+MemoryHigh=1G
+MemoryMax=2G
+
+[Install]
+WantedBy=multi-user.target

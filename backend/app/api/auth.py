@@ -39,7 +39,7 @@ def login(payload: LoginRequest, response: Response, db: DbSession = Depends(get
         key=COOKIE_NAME,
         value=token,
         httponly=True,
-        secure=False,
+        secure=settings.cookie_secure,
         samesite="strict",
         expires=expires_at,
         max_age=settings.session_hours * 3600,
@@ -60,7 +60,13 @@ def logout(
     db: DbSession = Depends(get_db),
 ):
     delete_session(db, token)
-    response.delete_cookie(COOKIE_NAME, path="/")
+    response.delete_cookie(
+        COOKIE_NAME,
+        path="/",
+        secure=settings.cookie_secure,
+        httponly=True,
+        samesite="strict",
+    )
 
 
 @router.post("/change-password", response_model=UserResponse)

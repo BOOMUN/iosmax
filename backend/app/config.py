@@ -25,6 +25,8 @@ class Settings:
     admin_username: str = os.getenv("IOSMAX_ADMIN_USERNAME", "admin")
     admin_password: str = os.getenv("IOSMAX_ADMIN_PASSWORD", "ChangeMe123!")
     session_hours: int = int(os.getenv("IOSMAX_SESSION_HOURS", "12"))
+    cookie_secure: bool = env_flag("IOSMAX_COOKIE_SECURE")
+    docs_enabled: bool = env_flag("IOSMAX_DOCS_ENABLED", True)
     host: str = os.getenv("IOSMAX_HOST", "127.0.0.1")
     port: int = int(os.getenv("IOSMAX_PORT", "8000"))
     injection_demo: bool = env_flag("IOSMAX_INJECTION_DEMO")
