@@ -1,5 +1,7 @@
 # iOSMax Control
 
+> **用途分类：设备管理** · **产品：iOSMax Control** · **形态：本地 Web 控制台**
+
 本地 Web 控制台，用于统一管理多台越狱 iPhone。支持管理员登录、设备管理、
 SSH/VNC/Frida 连通性检测、系统唤醒、返回桌面、noVNC 实时控制，以及 WhatsApp
 关联二维码虚拟摄像头任务。
